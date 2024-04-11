@@ -1,0 +1,239 @@
+/*********************************************
+ * Author:				Barakat S. Muharib
+ * Creation Data:		23 Feb, 2024
+ * Version:				v1.0
+ * Compiler:			GNU ARM-GCC
+ * Controller:			STM32F401CCU6
+ * Layer:				MCAL
+ ********************************************/
+/*********************************************
+ * Version	  Date				  Author				  Description
+ * v1.0		  23 Feb, 2024	Barakat S. Muharib		  Initial Creation
+ * v1.1       29 Feb, 2024	Barakat S. Muharib		  unify GPIO Pins for all registers
+*********************************************/
+
+// Header Guard File
+#ifndef GPIO_INTERFACE_H
+#define GPIO_INTERFACE_H
+
+//GPIO PORT Name 
+#define GPIO_PORTA 		        0
+#define GPIO_PORTB 		        1
+#define GPIO_PORTC 		        2
+
+// GPIO Pins 
+#define GPIO_PIN0         	            0
+#define GPIO_PIN1         	            1
+#define GPIO_PIN2         	            2
+#define GPIO_PIN3         	            3
+#define GPIO_PIN4         	            4
+#define GPIO_PIN5         	            5
+#define GPIO_PIN6         	            6
+#define GPIO_PIN7         	            7
+#define GPIO_PIN8         	            8
+#define GPIO_PIN9         	            9
+#define GPIO_PIN10         	            10
+#define GPIO_PIN11        	            11
+#define GPIO_PIN12        	            12
+#define GPIO_PIN13        	            13
+#define GPIO_PIN14        	            14
+#define GPIO_PIN15        	            15
+
+// // GPIO Pin Bit Positions in GPIO_MODER Register(2bits/Pin)
+// #define GPIO_MODER0      	    0
+// #define GPIO_MODER1 	            2
+// #define GPIO_MODER2 	            4
+// #define GPIO_MODER3 	            6
+// #define GPIO_MODER4 	            8
+// #define GPIO_MODER5 	            10
+// #define GPIO_MODER6 	            12
+// #define GPIO_MODER7 	            14
+// #define GPIO_MODER8 	            16
+// #define GPIO_MODER9 	            18
+// #define GPIO_MODER10 	        20
+// #define GPIO_MODER11	            22
+// #define GPIO_MODER12	            24
+// #define GPIO_MODER13	            26
+// #define GPIO_MODER14	            28
+// #define GPIO_MODER15	            30
+
+// GPIO_MODER Mode for Pin
+#define GPIO_MODER_PIN_INPUT		0b00
+#define GPIO_MODER_PIN_OUTPUT		0b01
+#define GPIO_MODER_PIN_AF			0b10
+#define GPIO_MODER_PIN_ANALOG		0b11
+
+// GPIO_MODER Mode for the whole Port
+#define GPIO_MODER_PORT_INPUT		0x00000000
+#define GPIO_MODER_PORT_OUTPUT		0x55555555
+#define GPIO_MODER_PORT_AF			0xAAAAAAAA
+#define GPIO_MODER_PORT_ANALOG		0xFFFFFFFF
+
+// // GPIO Pin Bit Positions in GPIO_OTYPER Register(1bit/Pin)
+// #define GPIO_OT0         	            0
+// #define GPIO_OT1         	            1
+// #define GPIO_OT2         	            2
+// #define GPIO_OT3         	            3
+// #define GPIO_OT4         	            4
+// #define GPIO_OT5         	            5
+// #define GPIO_OT6         	            6
+// #define GPIO_OT7         	            7
+// #define GPIO_OT8         	            8
+// #define GPIO_OT9         	            9
+// #define GPIO_OT10         	            10
+// #define GPIO_OT11        	            11
+// #define GPIO_OT12        	            12
+// #define GPIO_OT13        	            13
+// #define GPIO_OT14        	            14
+// #define GPIO_OT15        	            15
+
+// GPIO_OTYPER Output Mode for Pin    
+#define GPIO_OTYPER_PIN_PUSH_PULL 		0
+#define GPIO_OTYPER_PIN_OPEN_DRAIN 	    1
+
+// GPIO_OTYPER Output Mode for Port    
+#define GPIO_OTYPER_PORT_PUSH_PULL 		0x00000000
+#define GPIO_OTYPER_PORT_OPEN_DRAIN 	0x0000FFFF
+
+// // GPIO Pin Bit Positions in GPIO_OSPEEDR Register(2bits/Pin)
+// #define GPIO_OSPEEDR0      	                    0
+// #define GPIO_OSPEEDR1 	                        2
+// #define GPIO_OSPEEDR2 	                        4
+// #define GPIO_OSPEEDR3 	                        6
+// #define GPIO_OSPEEDR4 	                        8
+// #define GPIO_OSPEEDR5 	                        10
+// #define GPIO_OSPEEDR6 	                        12
+// #define GPIO_OSPEEDR7 	                        14
+// #define GPIO_OSPEEDR8 	                        16
+// #define GPIO_OSPEEDR9 	                        18
+// #define GPIO_OSPEEDR10 	                        20
+// #define GPIO_OSPEEDR11	                        22
+// #define GPIO_OSPEEDR12	                        24
+// #define GPIO_OSPEEDR13	                        26
+// #define GPIO_OSPEEDR14	                        28
+// #define GPIO_OSPEEDR15	                        30
+
+// GPIO_OSPEEDR Mode for Pin
+#define GPIO_OSPEEDR_PIN_LOW_SPEED		        0b00
+#define GPIO_OSPEEDR_PIN_MED_SPEED		        0b01
+#define GPIO_OSPEEDR_PIN_HIGH_SPEED             0b10
+#define GPIO_OSPEEDR_PIN_VERY_HIGH_SPEED		0b11
+
+// GPIO_OSPEEDR Mode for Port
+#define GPIO_OSPEEDR_PORT_LOW_SPEED		        0x00000000
+#define GPIO_OSPEEDR_PORT_MED_SPEED		        0x55555555
+#define GPIO_OSPEEDR_PORT_HIGH_SPEED            0xAAAAAAAA
+#define GPIO_OSPEEDR_PORT_VERY_HIGH_SPEED		0xFFFFFFFF
+
+// // GPIO Pin Bit Positions in GPIO_OTYPER Register(1bit/Pin)
+// #define GPIO_BS0         	        0
+// #define GPIO_BS1         	        1
+// #define GPIO_BS2         	        2
+// #define GPIO_BS3         	        3
+// #define GPIO_BS4         	        4
+// #define GPIO_BS5         	        5
+// #define GPIO_BS6         	        6
+// #define GPIO_BS7         	        7
+// #define GPIO_BS8         	        8
+// #define GPIO_BS9         	        9
+// #define GPIO_BS10         	        10
+// #define GPIO_BS11        	        11
+// #define GPIO_BS12        	        12
+// #define GPIO_BS13        	        13
+// #define GPIO_BS14        	        14
+// #define GPIO_BS15        	        15
+
+// Output Value(0 or 1) of the corresponding Pin  in the GPIO_ODR 
+#define GPIO_OUTPUT_PIN_VALUE_ZERO  0
+#define GPIO_OUTPUT_PIN_VALUE_ONE   1
+
+// Output Value(0 or 1) of the whole Port  in the GPIO_ODR 
+#define GPIO_OUTPUT_PORT_VALUE_ZERO 0x00000000
+#define GPIO_OUTPUT_PORT_VALUE_ONE 	0x0000FFFF
+
+
+// // GPIO Pin Bit Positions in GPIO_PUPDR Register(2bits/Pin)
+// #define GPIO_PUPDR0      	            0
+// #define GPIO_PUPDR1 	                2
+// #define GPIO_PUPDR2 	                4
+// #define GPIO_PUPDR3 	                6
+// #define GPIO_PUPDR4 	                8
+// #define GPIO_PUPDR5 	                10
+// #define GPIO_PUPDR6 	                12
+// #define GPIO_PUPDR7 	                14
+// #define GPIO_PUPDR8 	                16
+// #define GPIO_PUPDR9 	                18
+// #define GPIO_PUPDR10 	                20
+// #define GPIO_PUPDR11	                22
+// #define GPIO_PUPDR12	                24
+// #define GPIO_PUPDR13	                26
+// #define GPIO_PUPDR14	                28
+// #define GPIO_PUPDR15	                30
+
+// GPIO_PUPDR Pin State
+#define GPIO_PUPDR_PIN_FLOAT	        0b00
+#define GPIO_PUPDR_PIN_PULL_UP	        0b01
+#define GPIO_PUPDR_PIN_PULL_DOWN        0b10
+
+// GPIO_PUPDR Port State
+#define GPIO_PUPDR_PORT_FLOAT	        0x00000000
+#define GPIO_PUPDR_PORT_PULL_UP	        0x55555555
+#define GPIO_PUPDR_PORT_PULL_DOWN       0xAAAAAAAA
+
+// // GPIO Pin Bit Positions in GPIO_IDR Register(1bit/Pin)
+// #define GPIO_IDR0         	        0
+// #define GPIO_IDR1         	        1
+// #define GPIO_IDR2         	        2
+// #define GPIO_IDR3         	        3
+// #define GPIO_IDR4         	        4
+// #define GPIO_IDR5         	        5
+// #define GPIO_IDR6         	        6
+// #define GPIO_IDR7         	        7
+// #define GPIO_IDR8         	        8
+// #define GPIO_IDR9         	        9
+// #define GPIO_IDR10         	        10
+// #define GPIO_IDR11        	        11
+// #define GPIO_IDR12        	        12
+// #define GPIO_IDR13        	        13
+// #define GPIO_IDR14        	        14
+// #define GPIO_IDR15        	        15
+
+// // GPIO Pin Bit Positions in GPIO_LCKR Register(1bit/Pin)
+// #define GPIO_LCKR0         	        0
+// #define GPIO_LCKR1         	        1
+// #define GPIO_LCKR2         	        2
+// #define GPIO_LCKR3         	        3
+// #define GPIO_LCKR4         	        4
+// #define GPIO_LCKR5         	        5
+// #define GPIO_LCKR6         	        6
+// #define GPIO_LCKR7         	        7
+// #define GPIO_LCKR8         	        8
+// #define GPIO_LCKR9         	        9
+// #define GPIO_LCKR10                  10
+// #define GPIO_LCKR11        	        11
+// #define GPIO_LCKR12        	        12
+// #define GPIO_LCKR13        	        13
+// #define GPIO_LCKR14        	        14
+// #define GPIO_LCKR15        	        15
+#define GPIO_LCKK16        	        16
+
+// Prototype Functions for the GPIO Pin
+void MGPIO_voidSetPinMode(u8 Copy_u8PortName, u8 Copy_u8PinNumber, u8 Copy_u8Mode);
+void MGPIO_voidSetPinOutputMode(u8 Copy_u8PortName, u8 Copy_u8PinNumber, u8 Copy_u8OutputMode);
+void MGPIO_voidSetPinOutputSpeed(u8 Copy_u8PortName, u8 Copy_u8PinNumber, u8 Copy_u8OSpeedMode);
+void MGPIO_voidSetPinOutputValue(u8 Copy_u8PortName, u8 Copy_u8BSPinNr, u8 Copy_u8OutputValue);
+void MGPIO_voidSetPullupDownResister(u8 Copy_u8PortName, u8 Copy_u8PinNumber, u8 Copy_u8PullupDownState);
+u8 MGPIO_u8GetInputPinValue(u8 Copy_u8PortName, u8 Copy_u8PinNumber);
+void MGPIO_voidLockPin(u8 Copy_u8PortName, u8 Copy_u8LockPinNr);
+
+// Prototype Functions for the whole GPIO PORT
+void MGPIO_voidSetPortMode(u8 Copy_u8PortName, u32 Copy_u32Mode);
+void MGPIO_voidSetPortOutputMode(u8 Copy_u8PortName, u32 Copy_u32PortOutputMode);
+void MGPIO_voidSetPortOutputSpeed(u8 Copy_u8PortName, u32 Copy_u32OSpeedMode);
+void MGPIO_voidSetPortOutputValue(u8 Copy_u8PortName, u32 Copy_u32OutputValue);
+void MGPIO_voidSetPortPullupDownResister(u8 Copy_u8PortName, u32 Copy_u32PullupDownState);
+u32  MGPIO_u32GetInputPortValue(u8 Copy_u8PortName);
+void MGPIO_voidLockPort(u8 Copy_u8PortName);
+
+#endif
+

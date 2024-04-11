@@ -1,0 +1,36 @@
+/*********************************************
+ * Author:				Barakat S. Muharib
+ * Creation Data:		22 March, 2024
+ * Version:				v1.0
+ * Compiler:			GNU ARM-GCC
+ * Controller:			STM32F401CCU6
+ * Layer:				HAL
+ ********************************************/
+/*********************************************
+ * Version	  Date				  Author				  Description
+ * v1.0		  22 March, 2024	Barakat S. Muharib		  Initial Creation
+*********************************************/
+#include "../include/STD_TYPES.h"
+#include "../include/BIT_MATH.h"
+
+#include "../include/RCC_interface.h"
+#include "../include/GPIO_interface.h"
+
+#include "../include/LEDMAT_interface.h"
+
+//u8 arr[] = [0,126,16,16,126,0,0,0];
+
+void main(void)
+{
+	//Initialize the SystemClock
+	// Enable Peripheral Clock
+	// Initialize Systick
+	// Initialize LED Matrix
+	// Print Your First Letter of your name on the LED Matrix
+
+	//HLED_voidDisplay(arr);
+	while(1)
+	{
+
+	}
+}

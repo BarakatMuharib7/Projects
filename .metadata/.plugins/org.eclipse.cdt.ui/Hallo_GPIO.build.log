@@ -1,0 +1,11 @@
+14:11:12 **** Incremental Build of configuration Debug for project Hallo_GPIO ****
+make all 
+Invoking: Cross ARM GNU Print Size
+arm-none-eabi-size --format=berkeley "Hallo_GPIO.elf"
+   text	   data	    bss	    dec	    hex	filename
+   7483	    160	    416	   8059	   1f7b	Hallo_GPIO.elf
+Finished building: Hallo_GPIO.siz
+ 
+
+14:11:13 Build Finished (took 1s.136ms)
+

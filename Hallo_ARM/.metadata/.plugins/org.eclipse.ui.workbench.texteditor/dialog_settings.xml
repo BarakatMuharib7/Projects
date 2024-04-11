@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="isRegEx"/>
+		<item value="Copy_u8PinNumber" key="selection"/>
+		<item value="false" key="casesensitive"/>
+		<item value="false" key="incremental"/>
+		<item value="true" key="wrap"/>
+		<item value="false" key="wholeword"/>
+		<list key="findhistory">
+			<item value="Copy_u8LockPinNr"/>
+			<item value="Copy_u8InputPinNr"/>
+			<item value="Copy_u8BSPinNr"/>
+			<item value="Copy_u8OutputPinNr"/>
+			<item value="Copy_u8ModePin"/>
+			<item value="GPIO_PORT_C"/>
+			<item value="GPIO_PORT_B"/>
+			<item value="GPIO_PORT_A"/>
+		</list>
+		<list key="replacehistory">
+			<item value="Copy_u8PinNumber"/>
+			<item value="GPIO_PIN0"/>
+			<item value="GPIO_PORTC"/>
+			<item value="GPIO_PORTB"/>
+			<item value="GPIO_PORTA"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="277" key="DIALOG_WIDTH"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-24|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<item value="370" key="DIALOG_HEIGHT"/>
+		<item value="926" key="DIALOG_X_ORIGIN"/>
+		<item value="220" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>
