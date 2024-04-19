@@ -1,11 +1,11 @@
-09:06:48 **** Incremental Build of configuration Debug for project Hallo_LEDMAT ****
+16:51:25 **** Incremental Build of configuration Debug for project Hallo_LEDMAT ****
 make all 
 Invoking: Cross ARM GNU Print Size
 arm-none-eabi-size --format=berkeley "Hallo_LEDMAT.elf"
    text	   data	    bss	    dec	    hex	filename
-   9051	    320	    416	   9787	   263b	Hallo_LEDMAT.elf
+   8675	    160	    424	   9259	   242b	Hallo_LEDMAT.elf
 Finished building: Hallo_LEDMAT.siz
  
 
-09:06:49 Build Finished (took 438ms)
+16:51:26 Build Finished (took 465ms)
 

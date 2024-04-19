@@ -15,6 +15,8 @@
 
 void HLEDMAT_voidInit(void);
 void HLED_voidDisplay(u8 * Copy_pu8Data);
+void voidDisableAllColumnsSR(void);
+void voidSetRowsValueSR(u8 Copy_u8Value);
 
 
 #endif

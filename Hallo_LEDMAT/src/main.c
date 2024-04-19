@@ -45,7 +45,7 @@ u8  arr17[8] =  {144, 74, 127, 218, 0, 32, 0, 0};
 u8  arr18[8] =  {144, 74, 127, 218, 0, 16, 0, 0};
 
 u8  arr19[8] = {144, 74, 127, 218, 0, 32, 0, 0};
-u8  arr20[8] =  {144, 74, 127, 90, 128, 64, 0, 0};
+u8  arr20[8] =  {144, 74, 127, 90, 128, 64, 0, 0};//(144, 74, 127, 90, 128, 64, 0, 0)
 
 void main(void)
 {
@@ -60,11 +60,12 @@ void main(void)
 	// Initialize LED Matrix
 	HLEDMAT_voidInit();
 	// Print Your First Letter of your name on the LED Matrix
-
-//	HLED_voidDisplay(arr);
+	u8  arr[8] = {0, 254, 146, 108, 0, 0, 0, 0};
+	//HLED_voidDisplay(arr);
 
 	while(1)
 	{
+		/*
 		int i, j;
 		for (i= 0 ; i<3 ; i++)
 		{
@@ -178,5 +179,12 @@ void main(void)
 
 
 		}
+
+		*/
+
+		HLED_voidDisplay(arr);
 	}
 }
+
+
+

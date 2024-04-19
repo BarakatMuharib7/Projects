@@ -14,5 +14,6 @@ typedef	signed int			s32;
 typedef	float				f32;
 typedef	double				f64;
 
+#define NULLPTR             (void*)0
 
 #endif

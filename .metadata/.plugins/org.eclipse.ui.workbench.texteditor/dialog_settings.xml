@@ -2,12 +2,14 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="STK_CLK_SRC" key="selection"/>
+		<item value="Set_COL_Array" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="Set_COL_Array"/>
+			<item value="HLEDMAT_COL0_PORT_PIN"/>
 			<item value="STK_CLK_SRC"/>
 			<item value="STK_ENABLE"/>
 			<item value="AIRCR_PRIVKEY"/>

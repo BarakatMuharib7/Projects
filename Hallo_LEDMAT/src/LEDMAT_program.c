@@ -94,14 +94,17 @@ void HLED_voidDisplay(u8 * Copy_pu8Data)
     	for (i = 0 ; i< 8 ; i++)
     	{
     		/*Disable All Columns*/
-			voidDisableAllColumns();
+			//voidDisableAllColumns();
+			voidDisableAllColumnsSR();
 			/*Set Rows Value*/
-			voidSetRowsValue(Copy_pu8Data[i]);
+			//voidSetRowsValue(Copy_pu8Data[i]);
+			voidSetRowsValueSR(Copy_pu8Data[i]);
 			/*Activate Column 0*/
 			//MGPIO_voidSetPinValue(HLEDMAT_COL0_PORT_PIN, GPIO_PIN_LOW);
-			MGPIO_voidSetPinValue(GPIO_PORTA, i, GPIO_PIN_LOW);
+			//MGPIO_voidSetPinValue(GPIO_PORTA, i, GPIO_PIN_LOW);
 			/*Delay for 2.5msec*/
-			MSTK_voidSetBusyWait(2500);// 1000 ms /8*50, {8 Columns , 50 - 60 Pictures in one second}
+			//MSTK_voidSetBusyWait(2500);// 1000 ms /8*50, {8 Columns , 50 - 60 Pictures in one second}
+			MSTK_voidDelayMicroSeconds(2500);
     	}
     }
 }
@@ -116,6 +119,101 @@ static void voidDisableAllColumns(void)
     MGPIO_voidSetPinValue(HLEDMAT_COL5_PORT_PIN, GPIO_PIN_HIGH);
     MGPIO_voidSetPinValue(HLEDMAT_COL6_PORT_PIN, GPIO_PIN_HIGH);
     MGPIO_voidSetPinValue(HLEDMAT_COL7_PORT_PIN, GPIO_PIN_HIGH);
+}
+
+
+static void voidShiftClockSR(void)
+{
+	MGPIO_voidSetPinValue(HLEDMAT_COL1_PORT_PIN, GPIO_PIN_HIGH);
+	MSTK_voidDelayMicroSeconds(11);
+	MGPIO_voidSetPinValue(HLEDMAT_COL1_PORT_PIN, GPIO_PIN_LOW);
+	MSTK_voidDelayMicroSeconds(11);
+
+}
+
+static void voidStoreClockSR(void)
+{
+	MGPIO_voidSetPinValue(HLEDMAT_COL2_PORT_PIN, GPIO_PIN_HIGH);
+	MSTK_voidDelayMicroSeconds(11);
+	MGPIO_voidSetPinValue(HLEDMAT_COL2_PORT_PIN, GPIO_PIN_LOW);
+	MSTK_voidDelayMicroSeconds(11);
+
+}
+
+
+void voidDisableAllColumnsSR(void)// SR = Shift Register
+{
+	int i ;
+	for (i= 0; i< 8 ; i++)
+	{
+		MGPIO_voidSetPinValue(HLEDMAT_COL0_PORT_PIN, GPIO_PIN_HIGH);
+
+//		MGPIO_voidSetPinValue(HLEDMAT_COL1_PORT_PIN, GPIO_PIN_HIGH);
+//		MSTK_voidDelayMicroSeconds(100);
+//		MGPIO_voidSetPinValue(HLEDMAT_COL1_PORT_PIN, GPIO_PIN_LOW);
+//		MSTK_voidDelayMicroSeconds(100);
+
+		voidShiftClockSR();
+	}
+
+//    MGPIO_voidSetPinValue(HLEDMAT_COL1_PORT_PIN, GPIO_PIN_HIGH);
+//    MGPIO_voidSetPinValue(HLEDMAT_COL2_PORT_PIN, GPIO_PIN_HIGH);
+//    MGPIO_voidSetPinValue(HLEDMAT_COL3_PORT_PIN, GPIO_PIN_HIGH);
+//    MGPIO_voidSetPinValue(HLEDMAT_COL4_PORT_PIN, GPIO_PIN_HIGH);
+//    MGPIO_voidSetPinValue(HLEDMAT_COL5_PORT_PIN, GPIO_PIN_HIGH);
+//    MGPIO_voidSetPinValue(HLEDMAT_COL6_PORT_PIN, GPIO_PIN_HIGH);
+//    MGPIO_voidSetPinValue(HLEDMAT_COL7_PORT_PIN, GPIO_PIN_HIGH);
+	voidStoreClockSR();
+}
+
+
+
+void voidSetRowsValueSR(u8 Copy_u8Value)
+{
+    u8 Local_u8Bit , i, j ;
+
+//    /*Activate Column */
+//    for (j= 0; j< 8 ; j++)
+//    {
+//
+//		MGPIO_voidSetPinValue(HLEDMAT_COL0_PORT_PIN, GPIO_PIN_LOW);
+//		voidShiftClockSR();
+//    }
+
+    /*Set Rows Value*/
+    for (i= 0; i< 8 ; i++)
+    {
+		Local_u8Bit = GET_BIT(Copy_u8Value, i);
+		MGPIO_voidSetPinValue(HLEDMAT_COL0_PORT_PIN, Local_u8Bit);
+		voidShiftClockSR();
+    }
+
+
+//    Local_u8Bit = GET_BIT(Copy_u8Value, 1);
+//    MGPIO_voidSetPinValue(HLEDMAT_ROW1_PORT_PIN, Local_u8Bit);
+//    Local_u8Bit = GET_BIT(Copy_u8Value, 2);
+//    MGPIO_voidSetPinValue(HLEDMAT_ROW2_PORT_PIN, Local_u8Bit);
+//    Local_u8Bit = GET_BIT(Copy_u8Value, 3);
+//    MGPIO_voidSetPinValue(HLEDMAT_ROW3_PORT_PIN, Local_u8Bit);
+//    Local_u8Bit = GET_BIT(Copy_u8Value, 4);
+//    MGPIO_voidSetPinValue(HLEDMAT_ROW4_PORT_PIN, Local_u8Bit);
+//    Local_u8Bit = GET_BIT(Copy_u8Value, 5);
+//    MGPIO_voidSetPinValue(HLEDMAT_ROW5_PORT_PIN, Local_u8Bit);
+//    Local_u8Bit = GET_BIT(Copy_u8Value, 6);
+//    MGPIO_voidSetPinValue(HLEDMAT_ROW6_PORT_PIN, Local_u8Bit);
+//    Local_u8Bit = GET_BIT(Copy_u8Value, 7);
+//    MGPIO_voidSetPinValue(HLEDMAT_ROW7_PORT_PIN, Local_u8Bit);
+
+    /*Activate Column */
+    for (j= 0; j< 8 ; j++)
+    {
+
+		MGPIO_voidSetPinValue(HLEDMAT_COL0_PORT_PIN, GPIO_PIN_LOW);
+		voidShiftClockSR();
+    }
+
+    voidStoreClockSR();
+
 }
 
 static void voidSetRowsValue(u8 Copy_u8Value)
